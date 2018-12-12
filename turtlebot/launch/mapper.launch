@@ -1,0 +1,9 @@
+<launch>
+	<!--param name="use_sim_time" value="true" /-->
+	<!-- Start Mapper to genreate map from laser scans -->
+	<node name="Mapper" pkg="nav2d_karto" type="mapper">
+		<remap from="scan" to="scan_filtered" />
+		<rosparam file="$(find turtlebot)/param/mapper.yaml"/>
+	</node>
+
+</launch>

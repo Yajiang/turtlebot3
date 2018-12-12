@@ -1,0 +1,6 @@
+<launch>
+	<include file="$(find turtlebot)/launch/base.launch"/>
+
+	<!-- Start the joystick-driver and remote-controller for operation-->
+	<node name="Remote" pkg="nav2d_remote" type="remote_joy" />
+</launch>

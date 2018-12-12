@@ -1,0 +1,11 @@
+<launch>
+	<param name="use_sim_time" value="true" />
+	<rosparam file="$(find turtlebot)/param/ros.yaml"/>
+
+	<node pkg="tf" type="static_transform_publisher" name="lidar_pose" args="-0.1 0 0.1 0 0 0 1 base_footprint base_scan 100" />
+
+	<include file="$(find turtlebot)/launch/operator.launch"/>
+	<include file="$(find turtlebot)/launch/mapper.launch"/>
+
+	<node name="RVIZ" pkg="rviz" type="rviz" args=" -d $(find turtlebot)/param/replay.rviz" />
+</launch>

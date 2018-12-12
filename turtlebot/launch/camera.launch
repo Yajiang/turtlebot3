@@ -1,0 +1,7 @@
+<launch>
+	
+	<node pkg="raspicam_node" type="raspicam_node" name="raspicam">
+		<param name="camera_info_url" value="package://turtlebot/param/raspicam_640x480.yaml"/>
+	</node>
+
+</launch>

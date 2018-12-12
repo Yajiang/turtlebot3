@@ -1,0 +1,6 @@
+<launch>
+
+	<include file="$(find turtlebot)/launch/base.launch"/>
+	<include file="$(find turtlebot)/launch/camera.launch"/>
+
+</launch>

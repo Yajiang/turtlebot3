@@ -1,0 +1,20 @@
+<launch>
+
+	<!-- Laser filter to enable clearing in costmap -->
+	<node pkg="laser_filters" type="scan_to_scan_filter_chain" name="laser_filter">
+		<rosparam command="load" file="$(find turtlebot)/param/filter.yaml" />
+	</node>
+
+	<!-- Start the Operator to control the simulated robot -->
+	<rosparam file="$(find turtlebot)/param/ros.yaml"/>
+	<node name="Operator" pkg="nav2d_operator" type="operator" >
+		<remap from="scan" to="scan_filtered" />
+		<rosparam file="$(find turtlebot)/param/operator.yaml"/>
+		<rosparam file="$(find turtlebot)/param/costmap.yaml" ns="local_map" />
+	</node>
+
+	<!-- Start the joystick-driver and remote-controller for operation-->
+	<node name="Joy" pkg="joy" type="joy_node" />
+	<node name="Remote" pkg="nav2d_remote" type="remote_joy" />
+
+</launch>
