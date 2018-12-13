@@ -255,7 +255,7 @@ void RobotOperator::executeCommand()
 	//if(freeSpace < 0.3 && freeCells < transformedCloud.points.size())
 	//	safeVelocity = 0;
 //Modified by Eugene
-	if(freeSpace < 0.3 && freeCells < transformedCloud.points.size())
+	if(freeSpace < 0.25 && freeCells < transformedCloud.points.size())
 		safeVelocity = 0;
 //Ended
 

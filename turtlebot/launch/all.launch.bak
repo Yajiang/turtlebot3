@@ -4,11 +4,11 @@
 	<include file="$(find turtlebot)/launch/mapper.launch"/>
 
 	<!-- Start the Navigator to move the robot autonomously -->
-	<node name="Navigator" pkg="nav2d_navigator" type="navigator">
+	<!--node name="Navigator" pkg="nav2d_navigator" type="navigator">
 		<rosparam file="$(find turtlebot)/param/navigator.yaml"/>
-	</node>
-	<node name="GetMap" pkg="nav2d_navigator" type="get_map_client" />
-	<node name="Explore" pkg="nav2d_navigator" type="explore_client" />
-	<node name="SetGoal" pkg="nav2d_navigator" type="set_goal_client" />
+	</node-->
+	<!--node name="GetMap" pkg="nav2d_navigator" type="get_map_client" /-->
+	<!--node name="Explore" pkg="nav2d_navigator" type="explore_client" /-->
+	<!--node name="SetGoal" pkg="nav2d_navigator" type="set_goal_client" /-->
 
 </launch>
