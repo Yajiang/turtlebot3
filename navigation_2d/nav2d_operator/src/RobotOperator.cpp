@@ -455,16 +455,16 @@ double RobotOperator::evaluateAction(double direction, double velocity, bool deb
 	{
 		freeSpace = mMaxFreeSpace;
 	}
-	valueDistance = freeSpace / std::min(mMaxFreeSpace, length*mRasterSize);	normFactor = mDistanceWeight + mSafetyWeight;
+	valueDistance = freeSpace / std::min(mMaxFreeSpace, length*mRasterSize);//	normFactor = mDistanceWeight + mSafetyWeight;
 //Added by Eugene
-//	if(freeSpace < 0.2)
-//	{
-//		normFactor = mDistanceWeight + mSafetyWeight;
-//	}
-//	else
-//	{
-//		normFactor = 0 + mSafetyWeight;
-//	}
+	if(direction > 0.6 || direction < -0.6)
+	{
+		normFactor = mDistanceWeight + mSafetyWeight;
+	}
+	else
+	{
+		normFactor = 2 * mDistanceWeight+ mSafetyWeight;
+	}
 //Ended
 	if(mRecoverySteps == 0)
 	{
@@ -482,8 +482,17 @@ double RobotOperator::evaluateAction(double direction, double velocity, bool deb
 		action_value += valueContinue * mContinueWeight;
 		normFactor += mConformanceWeight + mContinueWeight;
 	}
-	
-	action_value += valueDistance * mDistanceWeight;
+//Added by Eugene
+	if (direction > 0.6 || direction < -0.6)
+	{
+		action_value += valueDistance * mDistanceWeight;
+	}
+	else
+	{
+		action_value += valueDistance * 2 * mDistanceWeight;
+	}
+//Ended
+//	action_value += valueDistance * mDistanceWeight;
 	action_value += valueSafety * mSafetyWeight;
 	action_value /=  normFactor;
 	
