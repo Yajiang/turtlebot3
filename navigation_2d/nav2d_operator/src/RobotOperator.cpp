@@ -345,7 +345,12 @@ void RobotOperator::executeCommand()
 	}else if(mCurrentDirection == -1 || mCurrentDirection == 1)
 	{
 		controlMsg.linear.x = 0;
-		controlMsg.angular.z = -1.0 * mCurrentDirection * velocity;
+//Modified by Eugene
+//Using fixed velocity for turning
+//In case that the velocity of turning is too large to find the suitable routine.
+//		controlMsg.angular.z = -1.0 * mCurrentDirection * velocity;
+		controlMsg.angular.z = -1.0 * mCurrentDirection * 0.4;
+//End
 	}else
 	{
 		double x = sin(mCurrentDirection * PI);
@@ -363,9 +368,21 @@ void RobotOperator::executeCommand()
 			ROS_DEBUG("Desired velocity of %.2f is limited to %.2f", velocity, -safeVelocity);
 			velocity = -safeVelocity;
 		}
-		
-		controlMsg.linear.x = velocity;
-		controlMsg.angular.z = -1.0 / r * controlMsg.linear.x;
+//Modified by Eugene		
+//Decrease the velocity of turning
+		if( mCurrentDirection > 0.9 || mCurrentDirection < -0.9)
+		{
+			controlMsg.linear.x = velocity * 0.2;
+			controlMsg.angular.z = -1.0 / r * controlMsg.linear.x * 0.2;
+		}
+		else
+		{
+			controlMsg.linear.x = velocity;
+			controlMsg.angular.z = -1.0 / r * controlMsg.linear.x;
+		}
+	//	controlMsg.linear.x = velocity;
+	//	controlMsg.angular.z = -1.0 / r * controlMsg.linear.x;
+//End
 	}
 	mControlPublisher.publish(controlMsg);
 }

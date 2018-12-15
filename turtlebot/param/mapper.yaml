@@ -13,11 +13,11 @@ min_map_size: 20
 DistanceVariancePenalty: 0.3
 AngleVariancePenalty: 0.02
 ScanBufferMaximumScanDistance: 20
-ScanBufferSize: 200
+ScanBufferSize: 100
 UseResponseExpansion: false
 #UseScanMatching: false
 LinkMatchMinimumResponseFine: 0.99
-LinkScanMaximumDistance: 0.2
+LinkScanMaximumDistance: 0.4
 ### Localizer ############################################# 
 min_particles: 2500
 max_particles: 10000
@@ -27,7 +27,7 @@ max_particles: 10000
 # For a full list of available parameters and their
 # corresponding default values, see OpenKarto/OpenMapper.h
 
-MinimumTravelDistance: 0.1
+MinimumTravelDistance: 0.2
 MinimumTravelHeading: 1.57
 LoopSearchMaximumDistance: 3.0
 
