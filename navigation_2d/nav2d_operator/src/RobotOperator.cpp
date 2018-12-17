@@ -349,7 +349,7 @@ void RobotOperator::executeCommand()
 //Using fixed velocity for turning
 //In case that the velocity of turning is too large to find the suitable routine.
 //		controlMsg.angular.z = -1.0 * mCurrentDirection * velocity;
-		controlMsg.angular.z = -1.0 * mCurrentDirection * 0.4;
+		controlMsg.angular.z = -1.0 * mCurrentDirection * 0.5;
 //End
 	}else
 	{
@@ -370,10 +370,10 @@ void RobotOperator::executeCommand()
 		}
 //Modified by Eugene		
 //Decrease the velocity of turning
-		if( mCurrentDirection > 0.9 || mCurrentDirection < -0.9)
+		if(abs_r < 0.05)
 		{
-			controlMsg.linear.x = velocity * 0.2;
-			controlMsg.angular.z = -1.0 / r * controlMsg.linear.x * 0.2;
+			controlMsg.linear.x = velocity * 0.25;
+			controlMsg.angular.z = -1.0 / r * controlMsg.linear.x * 0.25;
 		}
 		else
 		{

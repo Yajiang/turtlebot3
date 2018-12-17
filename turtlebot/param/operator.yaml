@@ -10,7 +10,7 @@ max_free_space: 0.5
 safety_decay: 0.95
 # The importance weights of the 3 action values
 distance_weight: 1
-safety_weight: 2
+safety_weight: 1.8
 conformance_weight: 2
 continue_weight: 3
 
